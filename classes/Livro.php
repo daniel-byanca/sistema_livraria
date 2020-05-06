@@ -22,7 +22,7 @@ class Livro{
    	$res = $cmd->fetchAll(PDO::FETCH_ASSOC);
    	return $res;
    }
-   public function cadastrarLivro($autor, $titulo, $pagina, $editora, $ano)
+   public function cadastrarLivro($autor, $titulo, $pagina, $editora, $ano, $categoria)
    {
     $cmd = $this->pdo->prepare("SELECT from id from livro WHERE autor = :a");
     $cmd->bindValue(":a", $autor);
@@ -32,12 +32,13 @@ class Livro{
     	return false;
     }else
     {
-      $cmd = $this->pdo->prepare("INSERT INTO livro(autor,titulo,pagina,editora,ano) VALUES (:a, :t, :p, :e, :n)");
+      $cmd = $this->pdo->prepare("INSERT INTO livro(autor,titulo,pagina,editora,ano,categoria) VALUES (:a, :t, :p, :e, :n, :q)");
       $cmd->bindValue(":a", $autor);
       $cmd->bindValue(":t", $titulo);
       $cmd->bindValue(":p", $pagina);
       $cmd->bindValue(":e", $editora);
       $cmd->bindValue(":n", $ano);
+      $cmd->bindValue(":q", $categoria);
       $cmd->execute();
       return true;
     }
@@ -57,15 +58,16 @@ class Livro{
       $res = $cmd->fetch(PDO::FETCH_ASSOC);
       return $res;
    }
-   public function atualizarDados($id,$autor,$titulo,$pagina,$editora,$ano)
+   public function atualizarDados($id,$autor,$titulo,$pagina,$editora,$ano,$categoria)
    {
    	
-     $cmd = $this->pdo->prepare("UPDATE livro SET autor = :a, titulo = :t, pagina = :p, editora = :e, ano = :n WHERE id = :id");
+     $cmd = $this->pdo->prepare("UPDATE livro SET autor = :a, titulo = :t, pagina = :p, editora = :e, ano = :n, categoria = :q WHERE id = :id");
      $cmd->bindValue(":a", $autor);
      $cmd->bindValue(":t", $titulo);
      $cmd->bindValue(":p", $pagina);
      $cmd->bindValue(":e", $editora);
      $cmd->bindValue(":n", $ano);
+     $cmd->bindValue(":q", $categoria);
      $cmd->bindValue(":id", $id);
      $cmd->execute();
     

@@ -1,5 +1,6 @@
 <?php 
 require_once 'classes/Usuarios.php';
+
 $u = new Usuario
 ?>
 <!DOCTYPE html>
@@ -7,6 +8,7 @@ $u = new Usuario
 <head>
 	<title>Projeto login</title>
 	<link rel="stylesheet" type="text/css" href="CSS/Index.css">
+  
 </head>
 <body>
 	<div id="corpo-form-Cad">

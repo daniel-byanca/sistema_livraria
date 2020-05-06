@@ -17,7 +17,7 @@ $p = new Emprestimo("sistemalogin","localhost","root","");
 	<meta charset="UTF-8">
 	<title></title>
 	
-	<link rel="stylesheet" type="text/css" href="CSS/Usuario_estilo.css">
+	<link rel="stylesheet" type="text/css" href="CSS/usuario_Estilo.css">
  <link rel="stylesheet" type="text/css" href="CSS/Homes.css">
 </head>
 <body>
@@ -109,7 +109,7 @@ $p = new Emprestimo("sistemalogin","localhost","root","");
 			<label for="dataEmtrega">DATA EMTREGA</label>
 			<input type="date" name="dataEmtrega" id="dataEmtrega" value="<?php if(isset($res)){echo $res['dataEmtrega'];}?>">
 			<label for="situacao">SITUACAO:</label>
-					<select type="situacao" name="situacao" value="<?php if(isset($res)){echo $res['situacao'];}?>">
+					<select type="situacao" id="selecione"> name="situacao" value="<?php if(isset($res)){echo $res['situacao'];}?>">
 						<option>SELECIONE:</option>
 						<option>Entregue</option>
 						<option>Devolvido</option></select>     

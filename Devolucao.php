@@ -9,13 +9,14 @@ if(!isset($_SESSION['id_usuario']))
 ?>
 <?php
 require_once 'classes/Devolucao.php';
+
 $p = new Devolucao("sistemalogin","localhost","root",""); 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="CSS/Usuario_estilo.css">
+	<link rel="stylesheet" type="text/css" href="CSS/usuario_Estilo.css">
 		 <link rel="stylesheet" type="text/css" href="CSS/Homes.css">
 </head>
 <body>
@@ -99,14 +100,14 @@ $p = new Devolucao("sistemalogin","localhost","root","");
 			<label for="nome">NOME</label>
 			<input type="text" name="nome" id="nome" value="<?php if(isset($res)){echo $res['nome'];}?>">
 			<label for="cpf">CPF</label>
-			<input type="text" name="cpf" id="cpf" value="<?php if(isset($res)){echo $res['cpf'];}?>">
+			<input type="text" maxlength="11" name="cpf" id="cpf" value="<?php if(isset($res)){echo $res['cpf'];}?>">
 			<label for="livro">LIVRO</label>
 			<input type="text" name="livro" id="livro" value="<?php if(isset($res)){echo $res['livro'];}?>">
 			<label for="dataDevolucao">DATA DEVOLUÇÃO</label>
 			<input type="date" name="dataDevolucao" id="dataDevolucao" value="<?php if(isset($res)){echo $res['dataDevolucao'];}?>">
 			<label for="observacao">OBSERVAÇÃO</label>
 			<textarea type="text" name="observacao" id="observacao" value="<?php if(isset($res)){echo $res['observacao'];}?>"></textarea>
-			
+
 			
 				
 	
@@ -123,7 +124,8 @@ $p = new Devolucao("sistemalogin","localhost","root","");
 				<td>CPF</td>
 				<td>LIVRO</td>
 				<td>DATA DEVOLUCAO</td>
-				<td colspan="2">OBSERVACÃO</td>
+				<td>OBSERVACÃO</td>
+				<td>ACAO</td>
 				
 			   
 

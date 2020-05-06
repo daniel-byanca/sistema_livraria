@@ -22,7 +22,7 @@ class Categoria{
     $res = $cmd->fetchAll(PDO::FETCH_ASSOC);
     return $res;
    }
-   public function cadastrarCategoria($nome)
+   public function cadastrarCategoria($nome, $qtd)
    {
     $cmd = $this->pdo->prepare("SELECT from id from categorias WHERE nome = :n");
     $cmd->bindValue(":n", $nome);
@@ -32,11 +32,11 @@ class Categoria{
       return false;
     }else
     {
-      $cmd = $this->pdo->prepare("INSERT INTO categorias(nome) VALUES (:n)");
+      $cmd = $this->pdo->prepare("INSERT INTO categorias(nome,qtd) VALUES (:n, :q)");
       $cmd->bindValue(":n", $nome);
+      $cmd->bindValue(":q", $qtd);
       $cmd->execute();
       return true;
-    
     }
    }
    public function excluirCategoria($id)
@@ -54,14 +54,19 @@ class Categoria{
       $res = $cmd->fetch(PDO::FETCH_ASSOC);
       return $res;
    }
-   public function atualizarDados($id,$nome)
+   public function atualizarDados($id,$nome,$qtd)
    {
     
-     $cmd = $this->pdo->prepare("UPDATE categorias SET nome = :n WHERE id = :id");
+     $cmd = $this->pdo->prepare("UPDATE categorias SET nome = :n, qtd = :q WHERE id = :id");
      $cmd->bindValue(":n", $nome);
+     $cmd->bindValue(":q", $qtd);
      $cmd->bindValue(":id", $id);
      $cmd->execute();
     
    }
+   //------------pesquisar--------------
+   
+      //--------codigo pesquisa termina aqui-----
 }
+
 ?>

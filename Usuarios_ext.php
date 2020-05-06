@@ -10,15 +10,17 @@ if(!isset($_SESSION['id_usuario']))
 ?>
 <?php
 require_once 'classes/Usu.php';
+
 $p = new Usu("sistemalogin","localhost","root",""); 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="CSS/usuario_estilo.css">
+	<link rel="stylesheet" type="text/css" href="CSS/usuario_Estilo.css">
 	
 	 <link rel="stylesheet" type="text/css" href="CSS/Homes.css">
+	 
 </head>
 <body>
 	<nav id="menu">
@@ -103,7 +105,7 @@ $p = new Usu("sistemalogin","localhost","root","");
 			<label for="cpf">CPF</label>
 			<input type="text" name="cpf" id="cpf" value="<?php if(isset($res)){echo $res['cpf'];}?>">
 			<label for="telefone">TELEFONE</label>
-			<input type="text" name="telefone" id="telefone" value="<?php if(isset($res)){echo $res['telefone'];}?>">
+			<input type="telefone" name="telefone" id="telefone" class="telefone"  value="<?php if(isset($res)){echo $res['telefone'];}?>">
 			<label for="endereco">ENDEREÇO</label>
 			<input type="text" name="endereco" id="endereco" value="<?php if(isset($res)){echo $res['endereco'];}?>">
 			<label for="cidade">CIDADE</label>
@@ -124,7 +126,8 @@ $p = new Usu("sistemalogin","localhost","root","");
 				<td>TELEFONE</td>
 				<td>ENDERECO</td>
 				<td>CIDADE</td>
-				<td colspan="2">RG</td>
+				<td>RG</td>
+				<td>ACAO</td>
 				
 				
 
@@ -164,6 +167,20 @@ $p = new Usu("sistemalogin","localhost","root","");
 		</table>
 		
 	</section>
+	
+
+<script src="./assets/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./assets/js/jquery.maskedinput.min.js"/></script>
+
+<script type="text/javascript">
+	
+	$('#telefone').mask("(61) 9999-99999");
+     $('#cpf').mask("999.999.999-99");
+     $('#rg').mask("99999999-9");
+   
+
+</script>
+    
 </body>
 </html>
 <?php
@@ -174,5 +191,6 @@ $p = new Usu("sistemalogin","localhost","root","");
   	header("location: usuarios_ext.php");
   } 
 ?>
+
 
 <a href="home.php" id="voltar">volta a página inicial</a>

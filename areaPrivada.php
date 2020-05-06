@@ -9,6 +9,7 @@ if(!isset($_SESSION['id_usuario']))
 ?>
 <?php
 require_once 'classes/Livro.php';
+
 $p = new Livro("sistemalogin","localhost","root",""); 
 ?>
 <!DOCTYPE html>
@@ -43,9 +44,10 @@ $p = new Livro("sistemalogin","localhost","root","");
           $pagina = addslashes($_POST['pagina']);
           $editora = addslashes($_POST['editora']);
           $ano = addslashes($_POST['ano']);
-          if(!empty($autor) && !empty($titulo) && !empty($pagina) && !empty($editora) && !empty($ano))
+          $categoria = addslashes($_POST['categoria']);
+          if(!empty($autor) && !empty($titulo) && !empty($pagina) && !empty($editora) && !empty($ano) && !empty($categoria))
      {
-        $p->atualizarDados($id_upd,$autor,$titulo,$pagina,$editora,$ano);
+        $p->atualizarDados($id_upd,$autor,$titulo,$pagina,$editora,$ano,$categoria);
         header("location: areaPrivada.php");
         
         
@@ -68,9 +70,10 @@ $p = new Livro("sistemalogin","localhost","root","");
           $pagina = addslashes($_POST['pagina']);
           $editora = addslashes($_POST['editora']);
           $ano = addslashes($_POST['ano']);
-          if(!empty($autor) && !empty($titulo) && !empty($pagina) && !empty($editora) && !empty($ano))
+          $categoria = addslashes($_POST['categoria']);
+          if(!empty($autor) && !empty($titulo) && !empty($pagina) && !empty($editora) && !empty($ano) && !empty($categoria))
      {
-        if(!$p->cadastrarLivro($autor,$titulo,$pagina,$editora,$ano))
+        if(!$p->cadastrarLivro($autor,$titulo,$pagina,$editora,$ano,$categoria))
         
         {
          echo "Livro ja cadastrado";
@@ -105,6 +108,8 @@ $p = new Livro("sistemalogin","localhost","root","");
 			<input type="text" name="editora" id="editora" value="<?php if(isset($res)){echo $res['editora'];}?>">
 			<label for="ano">Ano</label>
 			<input type="date" name="ano" id="ano" value="<?php if(isset($res)){echo $res['ano'];}?>">
+			<label for="categoria">CATEGORIA</label>
+			<input type="text" name="categoria" id="categoria" value="<?php if(isset($res)){echo $res['categoria'];}?>">
 			<input type="submit" 
 			value="<?php if(isset($res)){echo "Atualizar";}else{echo "Cadastrar";}?>">
 		</form>
@@ -118,6 +123,7 @@ $p = new Livro("sistemalogin","localhost","root","");
 				<td>PÁGINAS</td>
 				<td>EDITORA</td>
 				<td>ANO</td>
+				<td>CATEGORIA</td>
 				<td>AÇÃO</td>
 
 			</tr>
